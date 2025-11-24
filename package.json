@@ -1,0 +1,18 @@
+{
+  "name": "terracam-landing",
+  "version": "1.0.0",
+  "description": "TerraCam GPS Satellite Landing Page",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "terracam",
+    "gps",
+    "satellite",
+    "landing-page"
+  ],
+  "author": "Oanh Hoang",
+  "license": "MIT"
+}
+
