@@ -351,7 +351,25 @@ body {
 /* Screenshots Section */
 .screenshots {
     padding: 100px 0;
-    background: var(--bg-primary);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.screenshots::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.screenshots-container {
+    position: relative;
+    z-index: 1;
 }
 
 .screenshots-grid {
@@ -363,23 +381,34 @@ body {
 
 .screenshot-card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    border: 1px solid var(--border-color);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
 }
+
+.screenshot-card:nth-child(1) { animation-delay: 0.1s; }
+.screenshot-card:nth-child(2) { animation-delay: 0.2s; }
+.screenshot-card:nth-child(3) { animation-delay: 0.3s; }
+.screenshot-card:nth-child(4) { animation-delay: 0.4s; }
+.screenshot-card:nth-child(5) { animation-delay: 0.5s; }
 
 .screenshot-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-color: var(--primary-color);
 }
 
-.screenshot-placeholder {
+.screenshot-wrapper {
     position: relative;
     width: 100%;
     padding-top: 177.78%;
-    background: var(--bg-secondary);
     overflow: hidden;
+    background: var(--bg-secondary);
 }
 
 .screenshot-img {
@@ -389,38 +418,62 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .screenshot-card:hover .screenshot-img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
-.screenshot-label {
+.screenshot-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
     color: white;
-    padding: 1.5rem 1rem 1rem;
-    font-weight: 600;
-    font-size: 1.125rem;
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.screenshot-card:hover .screenshot-overlay {
+    transform: translateY(0);
+}
+
+.screenshot-label {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.screenshot-desc {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .screenshots-note {
     text-align: center;
-    margin-top: 3rem;
+    margin-top: 4rem;
     color: var(--text-secondary);
+    font-size: 1rem;
 }
 
 .screenshots-note a {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .screenshots-note a:hover {
+    color: var(--primary-dark);
     text-decoration: underline;
 }
 
@@ -733,10 +786,34 @@ body {
     
     .screenshots-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .screenshot-overlay {
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
     }
     
     .app-showcase {
         gap: 1.5rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 968px) {
+    .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 969px) and (max-width: 1200px) {
+    .screenshots-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1201px) {
+    .screenshots-grid {
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
