@@ -947,8 +947,21 @@ body {
     }
     
     .phone-mockup {
-        width: 250px;
-        height: 500px;
+        width: 280px;
+        height: 560px;
+    }
+    
+    .phone-frame {
+        border-radius: 40px;
+        padding: 6px;
+    }
+    
+    .phone-screen {
+        border-radius: 34px;
+    }
+    
+    .floating-card {
+        display: none;
     }
     
     .hero-stats {
@@ -956,9 +969,12 @@ body {
         gap: 1.5rem;
     }
     
-    .app-icon-large {
-        width: 100px;
-        height: 100px;
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
     }
     
     .screenshots-grid {
@@ -973,6 +989,11 @@ body {
     
     .app-showcase {
         gap: 1.5rem;
+    }
+    
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
     }
 }
 
