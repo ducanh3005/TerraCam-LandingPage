@@ -43,21 +43,21 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe feature cards
-document.querySelectorAll('.feature-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
+function initRevealAnimation(selector, initialTransform) {
+    document.querySelectorAll(selector).forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = initialTransform;
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
 
-// Observe why items
-document.querySelectorAll('.why-item').forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateX(-30px)';
-    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(item);
-});
+// Observe cards/sections for reveal
+initRevealAnimation('.feature-card', 'translateY(30px)');
+initRevealAnimation('.why-item', 'translateY(30px)');
+initRevealAnimation('.review-card', 'translateY(30px)');
+initRevealAnimation('.screenshot-card', 'translateY(30px)');
+initRevealAnimation('.global-camera-card', 'translateY(20px)');
 
 // Showcase items animation
 const showcaseItems = document.querySelectorAll('.showcase-item');
@@ -82,9 +82,39 @@ const phoneMockup = document.querySelector('.phone-mockup');
 if (phoneMockup) {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const rate = scrolled * 0.3;
-        phoneMockup.style.transform = `translateY(${rate}px)`;
+        const rate = scrolled * 0.15;
+        phoneMockup.style.transform = `translate3d(0, ${rate}px, 0)`;
     });
+}
+
+// Global cameras auto-scroll
+const globalStrip = document.querySelector('.global-cameras');
+if (globalStrip) {
+    let isHoveringStrip = false;
+    let scrollPosition = 0;
+
+    const maxScroll = () => globalStrip.scrollWidth - globalStrip.clientWidth;
+
+    function autoScrollGlobalStrip() {
+        if (!isHoveringStrip && maxScroll() > 0) {
+            scrollPosition += 0.4;
+            if (scrollPosition >= maxScroll()) {
+                scrollPosition = 0;
+            }
+            globalStrip.scrollLeft = scrollPosition;
+        }
+        requestAnimationFrame(autoScrollGlobalStrip);
+    }
+
+    globalStrip.addEventListener('mouseenter', () => {
+        isHoveringStrip = true;
+    });
+
+    globalStrip.addEventListener('mouseleave', () => {
+        isHoveringStrip = false;
+    });
+
+    requestAnimationFrame(autoScrollGlobalStrip);
 }
 
 // Add loading animation
