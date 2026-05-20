@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-adapter/:match*",
+      "destination": "http://171.244.56.97:9102/api-adapter/:match*"
+    }
+  ]
+}
