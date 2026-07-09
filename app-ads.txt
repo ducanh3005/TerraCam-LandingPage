@@ -2,6 +2,7 @@ google.com, pub-1582444887921776, DIRECT, f08c47fec0942fa0
 facebook.com, 550890706407846, DIRECT, c3e20eee3f780d68
 google.com, pub-7208941695689653, DIRECT, f088c47fec942fa0
 mintegral.com, 34745, DIRECT, 0aeed750c80d6423
+google.com, pub-1192553068981703, DIRECT, f08c47fec0942fa0
 
 facebook.com, 648297173403004, DIRECT, c3e20eee3f780d68
 facebook.com, 681792796500174, DIRECT, c3e20eee3f780d68
